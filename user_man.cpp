@@ -4,6 +4,7 @@
 #include <cstring>
 #include <bits/stdc++.h>
 #include "everything.h"
+#pragma pack(1)
 using namespace std;
 extern int login_stat;
 extern int user_total;

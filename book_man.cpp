@@ -5,6 +5,7 @@
 #include <cstring>
 #include <vector>
 #include "everything.h"
+#pragma pack(1)
 extern int login_stat;
 extern int user_total;
 extern int user_del;
@@ -23,14 +24,12 @@ public:
     char keyword[100] = {};
     int quantity = 0;
     double price = 0.0;
-    char empty[50] = {};
     explicit book(const char* ISBNN, const char* namee = "", const char* authorr = "", const char* keywordd = "", int quantityy = 0, double pricee = 0.0)
     {
         memset(ISBN, 0, sizeof(ISBN));
         memset(author, 0, sizeof(author));
         memset(name, 0, sizeof(name));
         memset(keyword, 0, sizeof(keyword));
-        memset(empty, 0, sizeof(empty));
         strcpy(ISBN, ISBNN);
         strcpy(name, namee);
         strcpy(author, authorr);
@@ -158,9 +157,9 @@ void cmd_book_man(char* cmd)
         book_table.open("book_table.txt");
         book_table.seekg(0);
         stringstream cmdd(cmd);
-        string cmd_head = "";
+        char cmd_head[100];
         cmdd >> cmd_head;
-        if (cmd_head == "select")
+        if (strcmp(cmd_head, "select") == 0)
         {
             test_auth(3);
             char ISBNN[25];
@@ -176,7 +175,7 @@ void cmd_book_man(char* cmd)
                 delete new_book;
             }
         }
-        else if (cmd_head == "show")
+        else if (strcmp(cmd_head, "show") == 0)
         {
             test_auth(1);
             cmdd.get();
@@ -224,7 +223,7 @@ void cmd_book_man(char* cmd)
                     cout << "Invalid" << endl;
             }
         }
-        else if (cmd_head == "modify")
+        else if (strcmp(cmd_head, "modify") == 0)
         {
             test_auth(3);
             test_now_select();
@@ -279,7 +278,7 @@ void cmd_book_man(char* cmd)
             book_table.write(reinterpret_cast<char *>(now_book), sizeof(book));
             delete now_book;
         }
-        else if(cmd_head == "import")
+        else if(strcmp(cmd_head, "import") == 0)
         {
             book *now_book = new book();
             test_auth(3);
