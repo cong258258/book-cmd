@@ -1,3 +1,0 @@
-/mnt/c/book-cmd/CMakeFiles/rebuild_cache.dir
-/mnt/c/book-cmd/CMakeFiles/book.dir
-/mnt/c/book-cmd/CMakeFiles/edit_cache.dir
