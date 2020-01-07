@@ -104,8 +104,9 @@ int find_user_stat(char* idd)
         user_table.read(reinterpret_cast<char*>(finding), sizeof(User));
         if(strcmp(idd, finding->id) == 0 && finding->stat >= 0)
         {
+        	int tmpstat = finding->stat;
             delete finding;
-            return finding->stat;
+            return tmpstat; 
         }
     }
     delete finding;
